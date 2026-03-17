@@ -41,7 +41,7 @@ silent! set clipboard=unnamedplus
 " 定義一個專門發送 OSC 52 的函式
 function! Osc52Yank(text)
     if executable('base64')
-        let b64 = system('base64 | tr -d "\n"', a:test)
+        let b64 = system('base64 | tr -d "\n"', a:text)
         let osc = "\e]52;c;" . b64 . "\x07"
         call writefile([osc], '/dev/tty', 'b')
     endif
