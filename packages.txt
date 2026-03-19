@@ -4,4 +4,4 @@ curl
 zsh
 lsd
 unzip
-
+htop
