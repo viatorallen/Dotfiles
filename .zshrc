@@ -120,10 +120,12 @@ alias venv='python3 -m venv venv && source venv/bin/activate'
 
 # --- 使用lsd代替ls，並顯示圖示與分類 --- 
 alias ls='lsd'
-alias ll='lsd -l'
+alias ll='lsd -lh'
 alias la='lsd -a'
 alias lt='lsd --tree'
 
 # --- 快速編輯設定檔 ---
 alias zconf='vim ~/.zshrc && source ~/.zshrc'
 alias vconf='vim ~/.vimrc'
+alias pip='pip3 '
+alias cls='clear'
