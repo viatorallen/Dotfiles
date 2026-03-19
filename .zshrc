@@ -20,8 +20,8 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # --- 個人 Aliases ---
-alias py='python3'
-alias pip='pip3'
+alias py='python3 '
+alias pip='pip3 '
 alias venv='python3 -m venv venv && source venv/bin/activate'
 
 # lsd 檢查
