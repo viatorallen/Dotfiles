@@ -1,0 +1,7 @@
+git
+wget
+curl
+zsh
+lsd
+unzip
+
