@@ -1,4 +1,4 @@
-🛠️ Allen's Dotfiles (macOS M4 & Ubuntu)
+🛠️ Dotfiles (macOS M4 & Ubuntu)
 ========================================
 
 這是一個針對  **Apple Silicon (M4)**  與  **Ubuntu**  虛擬機/伺服器環境優化的一鍵式開發環境配置。
