@@ -77,6 +77,22 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# Select path according to the system
+if [[ "$(uname)" == "Darwin" ]]; then
+    # macOS
+    if [[ -f "/opt/homebrew/bin/brew" ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+    # iTerm2 整合
+    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+elif [[ "$(uname)" == "Linux" ]]; then
+    # Ubuntu
+    export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
+fi
+
+
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
@@ -109,23 +125,30 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH="/opt/homebrew/bin:$PATH"
 
 # 快捷鍵設定
-# --- Python3 設定 ---
+# --- Python3 設定 --- 
 alias py='python3'
+alias pip='pip3 '
 alias venv='python3 -m venv venv && source venv/bin/activate'
 
-# --- 使用lsd代替ls，並顯示圖示與分類 --- 
-alias ls='lsd'
-alias ll='lsd -lh'
-alias la='lsd -a'
-alias lt='lsd --tree'
+# --- 使用lsd代替ls，並顯示圖示與分類 ---                                                                           
+if command -v lsd >/dev/null 2>&1; then
+    alias ls='lsd'
+    alias ll='lsd -lh'
+    alias la='lsd -a'
+    alias lt='lsd --tree'
+else
+    alias ll='ls -lh'
+    alias la='ls -a'
+fi
 
 # --- 快速編輯設定檔 ---
 alias zconf='vim ~/.zshrc && source ~/.zshrc'
 alias vconf='vim ~/.vimrc'
-alias pip='pip3 '
 alias cls='clear'
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
