@@ -52,8 +52,8 @@ install_zsh_plugin() {
 }
 
 install_zsh_plugin "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions"
-install_zsh_plugin "zsh-syntax-highlighting" "https://github.com/zsh-syntax-highlighting/zsh-syntax-highlighting.git"
-install_zsh_plugin "romkatv/powerlevel10k" "https://github.com/romkatv/powerlevel10k.git"
+install_zsh_plugin "zsh-syntax-highlighting" "https://github.com/zsh-syntax-highlighting/zsh-syntax-highlighting"
+install_zsh_plugin "romkatv/powerlevel10k" "https://github.com/romkatv/powerlevel10k"
 
 # 建立設定檔連結 (Symbolic Links)
 echo "🔗 建立設定檔連結..."
