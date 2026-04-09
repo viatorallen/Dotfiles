@@ -52,8 +52,8 @@ install_zsh_plugin() {
 }
 
 install_zsh_plugin "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions"
-install_zsh_plugin "zsh-syntax-highlighting" "https://github.com/zsh-syntax-highlighting/zsh-syntax-highlighting.git"
-install_zsh_plugin "romkatv/powerlevel10k" "https://github.com/romkatv/powerlevel10k.git"
+install_zsh_plugin "zsh-syntax-highlighting" "https://github.com/zsh-syntax-highlighting/zsh-syntax-highlighting"
+install_zsh_plugin "romkatv/powerlevel10k" "https://github.com/romkatv/powerlevel10k"
 
 # 建立設定檔連結 (Symbolic Links)
 echo "🔗 建立設定檔連結..."
@@ -61,5 +61,22 @@ ln -sf "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
 ln -sf "$DOTFILES_DIR/.vimrc" "$HOME/.vimrc"
 # 如果你有 .p10k.zsh 也一併連結
 [ -f "$DOTFILES_DIR/.p10k.zsh" ] && ln -sf "$DOTFILES_DIR/.p10k.zsh" "$HOME/.p10k.zsh"
+
+# --- 設定 Zsh 為預設 Shell ---
+if [ "$SHELL" != "$(which zsh)" ]; then
+    echo "正在將預設 Shell 切換為 Zsh..."
+    # 使用 chsh 變更預設 Shell
+    # 在某些系統需要 sudo，但在大多數現代 Linux 只需要輸入使用者密碼
+    if chsh -s "$(which zsh)"; then
+        echo "✅ 成功將預設 Shell 改為 Zsh"
+    else
+        echo "⚠️ 無法透過 chsh 變更 Shell，嘗試手動寫入 .bashrc..."
+        # 針對 WSL 的備用方案：如果 chsh 失敗，則在 .bashrc 加入自動跳轉
+        if ! grep -q "exec zsh" ~/.bashrc; then
+            echo -e "\n# 手動跳轉至 Zsh\nif [ -t 1 ]; then\n  exec zsh\nfi" >> ~/.bashrc
+            echo "✅ 已將 Zsh 跳轉加入 .bashrc"
+        fi
+    fi
+fi
 
 echo "✅ 所有套件與環境設定完成！請重啟終端機。"

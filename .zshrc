@@ -97,7 +97,14 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
+<<<<<<< HEAD
 # User configuration
+=======
+# --- 個人 Aliases ---
+alias py='python3 '
+alias pip='pip3 '
+alias venv='python3 -m venv venv && source venv/bin/activate'
+>>>>>>> b14aea7e6e05024da09c22ada9c8636b31291136
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

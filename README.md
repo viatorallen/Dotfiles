@@ -1,4 +1,4 @@
-🛠️ Allen's Dotfiles (macOS M4 & Ubuntu)
+🛠️ Dotfiles (macOS M4 & Ubuntu)
 ========================================
 
 這是一個針對  **Apple Silicon (M4)**  與  **Ubuntu**  虛擬機/伺服器環境優化的一鍵式開發環境配置。
@@ -69,10 +69,8 @@ chmod +x install.sh
 ⌨️ 常用快捷指令 (Aliases)
 -------------------
 
-|     |     |
-| --- | --- |
 | **指令** | **功能說明**  |
-|-|-|
+| --- | --- |
 | `ls`  /  `ll` | 使用  `lsd`  顯示帶有圖示的檔案列表  |
 | `venv` | 在當前目錄建立並啟動 Python 虛擬環境  |
 | `py`  /  `pip` | 自動指向  `python3`  與  `pip3`  |
@@ -97,49 +95,3 @@ chmod +x install.sh
     
 -   `.gitignore`: 排除  `.DS_Store`  與 Python 暫存檔。
     
-
----
-
-🔄 同步更新
--------
-
-當你在 Mac 上修改了設定並想同步到 Ubuntu 時：
-
-1.  **在 Mac 端推送**:
-    
-    Bash
-    
-    ```
-    git add .
-    git commit -m "Update configurations"
-    git push origin main
-    ```
-    
-2.  **在 Ubuntu 端拉取**:
-    
-    Bash
-    
-    ```
-    cd ~/Dotfiles && git pull
-    ```
-    
-
----
-
-**準備好開始了嗎？只需要 clone 並執行  `./install.sh`！**
-
----
-
-### 如何更新到 GitHub？
-
-1.  打開  `README.md`，貼上內容後存檔。
-    
-2.  執行指令：
-    
-    Bash
-    
-    ```
-    git add README.md
-    git commit -m "Fix: correct markdown formatting and links"
-    git push origin main
-    ```
