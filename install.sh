@@ -47,7 +47,7 @@ install_zsh_plugin() {
     local PLUGIN_URL=$2
     if [ ! -d "$ZSH_CUSTOM_DIR/plugins/$PLUGIN_NAME" ]; then
         echo "🔌 安裝插件: $PLUGIN_NAME..."
-        git clone --depth 1 "$PLUGIN_URL" "$ZSH_CUSTOM_DIR/plugins/$PLUGIN_NAME"
+        git clone --depth 1 -c credential.helper= "$PLUGIN_URL" "$ZSH_CUSTOM_DIR/plugins/$PLUGIN_NAME"
     fi
 }
 
