@@ -17,7 +17,7 @@ elif [ "$OS_TYPE" == "Linux" ]; then
     echo "🐧 檢測到 Ubuntu/Linux，啟動 APT 安裝..."
     sudo apt update
     # 確保基礎套件存在
-    sudo apt install -y curl git unzip xargs
+    sudo apt install -y curl git unzip findutils
     xargs -a "$DOTFILES_DIR/packages.txt" sudo apt install -y
 
     # Ubuntu 手動安裝 Nerd Fonts
@@ -41,6 +41,7 @@ fi
 # --- 自動下載 Zsh 插件 ---
 ZSH_CUSTOM_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 mkdir -p "$ZSH_CUSTOM_DIR/plugins"
+mkdir -p "$ZSH_CUSTOM_DIR/themes"
 
 install_zsh_plugin() {
     local PLUGIN_NAME=$1
@@ -51,9 +52,18 @@ install_zsh_plugin() {
     fi
 }
 
+install_zsh_theme(){
+    local THEME_NAME=$1
+    local THEME_URL=$2
+    if [ ! -d "$ZSH_CUSTIM_DIR/themes/$THEME_NAME" ]; then
+        echo " 安裝主題: $THEME_NAME..."
+        git clone --depth 1 -c cardential.helper= "$THEME_URL" "$ZSH_CUSTOM_DIR/themes/$THEME_NAME"
+    fi
+}
+
 install_zsh_plugin "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions"
-install_zsh_plugin "zsh-syntax-highlighting" "https://github.com/zsh-syntax-highlighting/zsh-syntax-highlighting"
-install_zsh_plugin "romkatv/powerlevel10k" "https://github.com/romkatv/powerlevel10k"
+install_zsh_plugin "zsh-syntax-highlighting" "https://github.com/zsh-users/zsh-syntax-highlighting"
+install_zsh_theme "romkatv/powerlevel10k" "https://github.com/romkatv/powerlevel10k"
 
 # 建立設定檔連結 (Symbolic Links)
 echo "🔗 建立設定檔連結..."
